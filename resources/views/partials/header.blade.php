@@ -37,6 +37,12 @@
                 <span class="nav__name">Liên hệ</span>
               </a>
             </li>
+            {{-- <li class="nav__item">
+                <a href="{{ route('admin.user.edit',[auth()->id()]) }}" class="nav__link {{ request()->is('contact') ? ' active-link' : '' }}"">
+                  <i class="bx bx-message-square-detail nav__icon"></i>
+                  <span class="nav__name">Thay đổi thông tin</span>
+                </a>
+              </li> --}}
           </ul>
         </div>
       </nav>

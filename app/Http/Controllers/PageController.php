@@ -12,12 +12,12 @@ use App\Models\Category;
 
 class PageController extends Controller
 {
-    public function home() : View
+    public function home(): View
     {
         $categories = Category::with('travel_packages')->get();
         $posts = Post::get();
 
-        return view('home', compact('categories','posts'));
+        return view('home', compact('categories', 'posts'));
     }
 
     public function detail(TravelPackage $travelPackage): View
@@ -25,40 +25,51 @@ class PageController extends Controller
         return view('detail', compact('travelPackage'));
     }
 
-    public function package(){
+    public function package()
+    {
         $travelPackages = TravelPackage::with('galleries')->get();
 
         return view('package', compact('travelPackages'));
     }
+    public function order()
+    {
+        $travels = TravelPackage::get();
+        $tourId = request()->query('tour_id');
 
-    public function posts(){
+        return view('order', compact('travels', 'tourId'));
+    }
+
+    public function change_info()
+    {
+        return view('changeInfo');
+    }
+
+    public function posts()
+    {
         $posts = Post::get();
 
         return view('posts', compact('posts'));
     }
 
-    public function order(){
-        // $posts = Post::get();
-
-        return view('order');
+    public function detailPost(Post $post)
+    {
+        return view('posts-detail', compact('post'));
     }
 
-    public function detailPost(Post $post){
-        return view('posts-detail',compact('post'));
-    }
-
-    public function contact(){
+    public function contact()
+    {
         return view('contact');
     }
 
-    public function getEmail(StoreEmailRequest $request){
+    public function getEmail(StoreEmailRequest $request)
+    {
         $detail = [
             'name' => $request->name,
             'email' => $request->email,
             'message' => $request->message
         ];
 
-        Mail::to('manh@gmail.com')->send(new StoreContactMail($detail));
+        Mail::to('azizabdulaziz70932@gmail.com')->send(new StoreContactMail($detail));
         return back()->with('message', 'Terimakasih atas feedbacknya ! kami akan membacanya sesegera mungkin');
     }
 }

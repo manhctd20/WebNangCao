@@ -24,7 +24,7 @@
       <section class="container detail">
         <div class="swiper mySwiper detail-container">
           <div class="swiper-wrapper">
-              
+
             @foreach($travelPackage->galleries as $gallery)
                 <div class="detail-card swiper-slide">
                     <img
@@ -73,7 +73,7 @@
                   <b>098134856</b>
                 </div>
              </div> --}}
-              <a onClick="return confirm('Bạn chắc chắn muốn đặt tour?')" class="btn btn-book btn-block mt-3" href="https://api.whatsapp.com/send?phone=6281999483864&text= Saya mau pesan paket travel {{ $travelPackage->name }} berikut bukti pembayaran saya ! " target="_blank"
+              <a onClick="return confirm('Bạn chắc chắn muốn đặt tour?')" href="{{route('order', ['tour_id' => $travelPackage->id])}}" class="btn btn-book btn-block mt-3"
                 >Tiếp tục</a
               >
             </div>
