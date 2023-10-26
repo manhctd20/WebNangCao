@@ -14,7 +14,7 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() : View
+    public function index(): View
     {
         $orders = Order::get();
 

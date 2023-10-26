@@ -12,6 +12,9 @@ use App\Models\Category;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
+
 
 class PageController extends Controller
 {
@@ -50,10 +53,19 @@ class PageController extends Controller
 
         $travelPackages = TravelPackage::with('galleries')
             ->where('name', 'like', "%$keyword%")
-            ->orWhere('description', 'like', "%$keyword%")
-            ->get();
+            ->paginate(5);
+        $travelPackages->appends(['page' => 1]);
 
         return view('package', compact('travelPackages'));
+    }
+    public function userOrder()
+    {
+        $user = Auth::user();
+
+        // Lấy danh sách đơn hàng của người dùng
+        $orders = Order::where('user_id', $user->id)->get();
+
+        return view('userOrder', compact('orders'));
     }
     public function order()
     {

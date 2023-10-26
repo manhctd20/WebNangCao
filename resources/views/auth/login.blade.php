@@ -51,7 +51,7 @@
                                     </label>
                                 </div>
                                 <div class="col-md-8 offset-md-4">
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link" href="{{ route('register') }}">
                                         {{ __('Bạn chưa có tài khoản?') }}
                                     </a>
                                 </div>

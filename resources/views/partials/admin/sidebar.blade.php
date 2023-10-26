@@ -52,7 +52,7 @@
     </li>
 
     <li class="nav-item ">
-        <a class="nav-link" href="{{ route('admin.orders.index') }}">
+        <a class="nav-link" href="{{ route('orders.index') }}">
             <i class="fas fa-fw fa-book"></i>
             <span>Orders</span></a>
     </li>

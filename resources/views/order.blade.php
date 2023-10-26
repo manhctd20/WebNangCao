@@ -30,7 +30,7 @@
                     @endif
 
                   <h1>Đặt tour</h1>
-                    <form action="{{ route('admin.orders.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('orders.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                         <div class="form-group mb-3">

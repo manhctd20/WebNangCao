@@ -88,6 +88,7 @@
                             @auth
                                 <div class="user-menu">
                                     <a href="{{ route('users.edit', [auth()->id()]) }}">Thay đổi thông tin</a>
+                                    <a href="{{ route('userOrder' ) }}">Các Tour đã đặt</a>
                                     @if (Auth::user()->isAdmin())
                                         <a href="{{ route('admin.dashboard') }}">Trang quản lý</a>
                                     @endif
