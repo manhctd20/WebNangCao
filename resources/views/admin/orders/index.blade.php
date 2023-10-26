@@ -31,7 +31,8 @@
                             <th>People</th>
                             <th>Total Price</th>
                             <th>Phone</th>
-                            {{-- <th>Action</th> --}}
+                            <th>status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,19 +46,37 @@
                                 <td>{{ $order->number }}</td>
                                 <td>{{ $order->totalPrice }}</td>
                                 <td>{{ $order->phone }}</td>
-                                {{-- <td>
-                                    <a href="{{ route('admin.orders.edit', $order) }}" class="btn btn-info">
+                                <td>
+                                    @if ($order->status === 2)
+                                    Đã xác nhận
+                                    @else
+                                    Chờ xác nhận
+                                    @endif
+                                </td>
+                                <td>
+                                    {{-- <a href="{{ route('admin.orders.edit', $order) }}" class="btn btn-info">
                                         <i class="fa fa-pencil-alt"></i>
-                                    </a>
-                                    <form class="d-inline" action="{{ route('admin.orders.destroy', $order) }}"
+                                    </a> --}}
+                                    <form class="d-inline" action="{{route('orders.update',[$order->id])}}"
                                         method="POST">
+                                        @method("PUT")
                                         @csrf
-                                        @method('delete')
+                                        @if ($order->status !== 2)
+                                        <input type="hidden" name="status" value="2">
+                                        <button onClick="return confirm('Are you sure !')" class="btn btn-primary">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                        @endif
+                                    </form>
+                                    <form class="d-inline" action="{{route('orders.update',[$order->id])}}"
+                                        method="POST">
+                                        @method("DELETE")
+                                        @csrf
                                         <button onClick="return confirm('Are you sure !')" class="btn btn-danger">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </form>
-                                </td> --}}
+                                </td>
                             </tr>
                         @empty
                             <tr>

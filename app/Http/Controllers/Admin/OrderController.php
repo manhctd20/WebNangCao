@@ -87,7 +87,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -99,7 +99,13 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $order = Order::find($id);
+        $order->status = $data["status"];
+        $order->save();
+
+        return redirect()->back()->with('message', 'Cập nhật trạng thái thành công!');
     }
 
     /**
@@ -110,6 +116,10 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Order::find($id);
+
+        $order->delete();
+
+        return redirect()->back()->with('message', 'Xóa order thành công!');
     }
 }
