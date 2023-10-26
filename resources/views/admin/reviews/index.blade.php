@@ -23,8 +23,8 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>User_Id</th>
-                            <th>Travel_Package_Id</th>
+                            <th>User Name</th>
+                            <th>Travel Tour Name</th>
                             <th>Rating</th>
                             <th>Comment</th>
                             <th>Created_At</th>
@@ -32,11 +32,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($reviews as $review)
+                        @forelse($reviews as $key => $review)
                             <tr>
                                 <td>{{ $review->id }}</td>
-                                <td>{{ $review->user_id }}</td>
-                                <td>{{ $review->travel_package_id }}</td>
+                                <td>{{ $users[$key]->name }}</td>
+                                <td>{{ $tourNames[$key]->name }}</td>
                                 <td>{{ $review->rating }}</td>
                                 <td>{{ $review->comment }}</td>
                                 <td>{{ $review->created_at }}</td>

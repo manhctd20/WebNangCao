@@ -39,7 +39,7 @@
                             <td>{{ $travelPackage->name }}</td>
                             <td>{{ $travelPackage->location }}</td>
                             <td>{{ $travelPackage->duration }}</td>
-                            <td>{{ $travelPackage->price }}</td>
+                            <td>{{ number_format($travelPackage->price) }}</td>
                             <td>
                                 <a href="{{ route('admin.travel-packages.edit', $travelPackage) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>

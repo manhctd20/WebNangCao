@@ -41,7 +41,7 @@ class PageController extends Controller
 
     public function package()
     {
-        $travelPackages = TravelPackage::with('galleries')->paginate(5);
+        $travelPackages = TravelPackage::with('galleries')->paginate(10);
         $travelPackages->appends(['page' => 1]);
 
         return view('package', compact('travelPackages'));
@@ -58,15 +58,27 @@ class PageController extends Controller
 
         return view('package', compact('travelPackages'));
     }
-    public function userOrder()
+    public function userOrder(TravelPackage $travelPackage): View
     {
         $user = Auth::user();
 
-        // Lấy danh sách đơn hàng của người dùng
-        $orders = Order::where('user_id', $user->id)->get();
+        $users = [];
+        $tourNames = [];
+        
+        $orders = Order::where('user_id', $user->id)
+            // ->where('travel_package_id', $travelPackage->id)
+            ->get();
 
-        return view('userOrder', compact('orders'));
+        foreach ($orders as $order) {
+            $user = User::find($order->user_id);
+            $users[] = $user;
+            $tourName = TravelPackage::find($order->travel_package_id);
+            $tourNames[] = $tourName;
+        }
+    
+        return view('userOrder', compact('orders', 'users', 'tourNames'));
     }
+
     public function order()
     {
         $travels = TravelPackage::get();

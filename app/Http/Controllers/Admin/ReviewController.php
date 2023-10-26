@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Http\Controllers\Controller;
+use App\Models\TravelPackage;
+use App\Models\User;
 use Illuminate\View\View;
 
 class ReviewController extends Controller
@@ -14,11 +16,21 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() : View
+    public function index(TravelPackage $travelPackage, User $user) : View
     {
+        $users = [];
+        $tourNames = [];
+        
         $reviews = Review::get();
 
-        return view('admin.reviews.index')->with(compact('reviews'));
+        foreach ($reviews as $review) {
+            $user = User::find($review->user_id);
+            $users[] = $user;
+            $tourName = TravelPackage::find($review->travel_package_id);
+            $tourNames[] = $tourName;
+        }
+
+        return view('admin.reviews.index')->with(compact('reviews', 'users', 'tourNames'));
     }
     /**
      * Show the form for creating a new resource.

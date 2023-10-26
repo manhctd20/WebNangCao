@@ -61,7 +61,7 @@
                         </div>
                         <input type="hidden" name="totalPrice" id="totalPrice" value="{{ old('totalPrice') }}">
                         <div class="mb-3">Tổng: <span id="totalPriceDisplay"></span>VNĐ</div>
-                        <!-- Thêm các trường thông tin khác -->
+                        
                         <button type="submit" class="btn btn-primary">Xác nhận</button>
                     </form>
 

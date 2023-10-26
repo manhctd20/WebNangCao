@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\TravelPackage;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class OrderController extends Controller
@@ -14,11 +17,28 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(): View
+    public function index(TravelPackage $travelPackage): View
     {
+        $user = Auth::user();
+
+        $users = [];
+        $tourNames = [];
+        
+        $orders = Order::where('user_id', $user->id)
+            // ->where('travel_package_id', $travelPackage->id)
+            ->get();
+
+        foreach ($orders as $order) {
+            $user = User::find($order->user_id);
+            $users[] = $user;
+            $tourName = TravelPackage::find($order->travel_package_id);
+            $tourNames[] = $tourName;
+        }
+    
         $orders = Order::get();
 
-        return view('admin.orders.index')->with(compact('orders'));
+
+        return view('admin.orders.index')->with(compact('orders','users', 'tourNames'));
     }
 
     /**

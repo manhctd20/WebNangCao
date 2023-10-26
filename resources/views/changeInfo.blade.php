@@ -23,8 +23,9 @@
                     <form action="{{ route('admin.users.update', [auth()->id()] ) }}" method="POST" enctype="multipart/form-data">
                         @method("PUT")
                         @csrf
+                        <h3 class="text-center mb-4">Thay đổi thông tin cá nhân</h3>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name" class="form-label">Tên</label>
                             <input type="text" name="name" class="form-control"value="{{ $users->name }}" id="name">
                         </div>
                         <div class="mb-3">
@@ -32,7 +33,7 @@
                             <input type="email" name="email" class="form-control"value="{{ $users->email }}" id="exampleInputEmail1">
                         </div>
                         <div class="mb-3">
-                            <label for="phone" class="form-label">Phone</label>
+                            <label for="phone" class="form-label">SĐT</label>
                             <input type="text" name="phone" class="form-control"value="{{ $users->phone }}" id="phone">
                         </div>
                         <div class="mb-3">
@@ -59,18 +60,18 @@
                         <form action="{{route('change-password') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
-                                <label for="old-password" class="form-label">Old Password</label>
+                                <label for="old-password" class="form-label">Mật khẩu cũ</label>
                                 <input type="password" name="current_password" class="form-control" id="old-password" placeholder="Nhập mật khẩu cũ">
                             </div>
                             <div class="mb-3">
-                                <label for="new-password" class="form-label">New Password</label>
+                                <label for="new-password" class="form-label">Mật khẩu mới</label>
                                 <input type="password" name="new_password" class="form-control" id="new-password" placeholder="Nhập mật khẩu mới">
                             </div>
                             <div class="mb-3">
-                                <label for="confirm-password" class="form-label">Confirm Password</label>
+                                <label for="confirm-password" class="form-label">Xác nhận mk</label>
                                 <input type="password" name="new_password_confirmation" class="form-control" id="confirm-password"  placeholder="Xác nhận mật khẩu mới">
                             </div>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
                             <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Xác nhận</button>
                         </form>
                     </div>
