@@ -16,8 +16,8 @@
 }
 
 .search-box input[type="text"]:focus {
-    background-color: #fff; 
-    border: none; 
+    background-color: #fff;
+    border: none;
 }
 
 .search-box button {
@@ -45,7 +45,8 @@
             <div class="hero-content h-100 d-flex justify-content-center align-items-center flex-column">
                 <div class="row">
                     <div class="search-box">
-                        <form action="" method="get">
+                        <form action="{{route("search")}}" method="POST">
+                            @csrf
                             <input type="text" name="query" placeholder="Tìm kiếm...">
                             <button type="submit">Tìm kiếm</button>
                         </form>

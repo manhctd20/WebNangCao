@@ -11,6 +11,7 @@ use App\Http\Requests\StoreEmailRequest;
 use App\Models\Category;
 use App\Models\Review;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -41,6 +42,18 @@ class PageController extends Controller
 
         return view('package', compact('travelPackages'));
     }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('query');
+
+        $travelPackages = TravelPackage::with('galleries')
+            ->where('name', 'like', "%$keyword%")
+            ->orWhere('description', 'like', "%$keyword%")
+            ->get();
+
+        return view('package', compact('travelPackages'));
+    }
     public function order()
     {
         $travels = TravelPackage::get();
@@ -62,9 +75,9 @@ class PageController extends Controller
     }
 
     public function detailPost(Post $post)
-{
-    return view('posts-detail', compact('post'));
-}
+    {
+        return view('posts-detail', compact('post'));
+    }
 
 
     public function contact()

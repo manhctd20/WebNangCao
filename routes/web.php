@@ -26,6 +26,7 @@ Route::get('order', [App\Http\Controllers\PageController::class, 'order'])->name
 Route::get('change-info/{id}', [App\Http\Controllers\PageController::class, 'change_info'])->name('change-info');
 Route::get('posts/{post:slug}', [App\Http\Controllers\PageController::class, 'detailPost'])->name('posts.show');
 Route::get('paket-travel', [App\Http\Controllers\PageController::class, 'package'])->name('package');
+Route::post('search', [App\Http\Controllers\PageController::class, 'search'])->name('search');
 Route::get('detail/{travelPackage:slug}', [App\Http\Controllers\PageController::class, 'detail'])->name('detail');
 Route::get('contact', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');
 Route::post('contact', [App\Http\Controllers\PageController::class, 'getEmail'])->name('contact.email');
