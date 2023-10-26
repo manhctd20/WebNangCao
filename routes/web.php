@@ -27,8 +27,8 @@ Route::get('change-info/{id}', [App\Http\Controllers\PageController::class, 'cha
 Route::get('posts/{post:slug}', [App\Http\Controllers\PageController::class, 'detailPost'])->name('posts.show');
 Route::get('paket-travel', [App\Http\Controllers\PageController::class, 'package'])->name('package');
 Route::get('detail/{travelPackage:slug}', [App\Http\Controllers\PageController::class, 'detail'])->name('detail');
-Route::get('kontak-kami', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');
-Route::post('kontak-kami', [App\Http\Controllers\PageController::class, 'getEmail'])->name('contact.email');
+Route::get('contact', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');
+Route::post('contact', [App\Http\Controllers\PageController::class, 'getEmail'])->name('contact.email');
 Route::post('change-password', [App\Http\Controllers\ChangePasswordController::class, 'changePassword'])->name('change-password');
 Route::resource('review', \App\Http\Controllers\Admin\ReviewController::class);
 Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
