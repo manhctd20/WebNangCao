@@ -225,6 +225,9 @@
                         <li class="breadcrumb-item">
                             <a class="title-alt" href="{{ route('home') }}">Trang Chủ</a>
                         </li>
+                        <li class="breadcrumb-item">
+                            <a class="title-alt" href="{{ route('package') }}">Tour Du Lịch</a>
+                        </li>
                         <li class="breadcrumb-item main-color">Chi tiết Tour</li>
                     </ol>
                 </nav>

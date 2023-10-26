@@ -38,7 +38,8 @@ class PageController extends Controller
 
     public function package()
     {
-        $travelPackages = TravelPackage::with('galleries')->get();
+        $travelPackages = TravelPackage::with('galleries')->paginate(5);
+        $travelPackages->appends(['page' => 1]);
 
         return view('package', compact('travelPackages'));
     }

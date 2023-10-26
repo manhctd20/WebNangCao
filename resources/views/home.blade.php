@@ -1,35 +1,43 @@
 @extends('layouts.app')
 
 <style>
-.search-box {
-    text-align: center;
-    margin: 20px 0;
-}
+    .search-box {
+        text-align: center;
+        margin: 20px 0;
+    }
 
-.search-box input[type="text"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 300px;
-    background-color: transparent;
-    transition: background-color 0.3s;
-}
+    .search-box input[type="text"]::placeholder {
+        color: #fff;
+        /* Đặt màu chữ của placeholder thành trắng (#fff) khi chưa focus */
+    }
 
-.search-box input[type="text"]:focus {
-    background-color: #fff;
-    border: none;
-}
+    .search-box input[type="text"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 300px;
+        background-color: transparent;
+        transition: background-color 0.3s;
+    }
 
-.search-box button {
-    padding: 10px 20px;
-    background-color: #1ABC9C;
-    color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    .search-box input[type="text"]:focus {
+        background-color: #fff;
+        border: none;
+    }
 
+    .search-box input[type="text"]:focus::placeholder {
+        color: initial;
 
+    }
+
+    .search-box button {
+        padding: 10px 20px;
+        background-color: #1ABC9C;
+        color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 </style>
 
 @section('content')
@@ -45,7 +53,7 @@
             <div class="hero-content h-100 d-flex justify-content-center align-items-center flex-column">
                 <div class="row">
                     <div class="search-box">
-                        <form action="{{route("search")}}" method="POST">
+                        <form action="{{ route('search') }}" method="POST">
                             @csrf
                             <input type="text" name="query" placeholder="Tìm kiếm...">
                             <button type="submit">Tìm kiếm</button>
