@@ -332,6 +332,7 @@ footer .list-group-item a:hover {
     .nav__list {
         justify-content: center;
         column-gap: 3rem;
+        align-items: center;
     }
 }
 

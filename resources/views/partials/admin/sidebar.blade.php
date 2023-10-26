@@ -39,6 +39,24 @@
             <span>Post</span></a>
     </li>
 
+    <li class="nav-item ">
+        <a class="nav-link" href="{{ route('admin.users.index') }}">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Users</span></a>
+    </li>
+
+    <li class="nav-item ">
+        <a class="nav-link" href="{{ route('admin.reviews.index') }}">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Reviews</span></a>
+    </li>
+
+    <li class="nav-item ">
+        <a class="nav-link" href="{{ route('admin.orders.index') }}">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Orders</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 

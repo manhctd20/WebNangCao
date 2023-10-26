@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Review;
+use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 
-class OrdersController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() : View
     {
-        //
-    }
+        $reviews = Review::get();
 
+        return view('admin.reviews.index')->with(compact('reviews'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +38,17 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $data = $request->all();
+
+        $review = new Review();
+        $review->user_id = $data["user_id"];
+        $review->travel_package_id = $data["travel_package_id"];
+        $review->rating = $data["rating"];
+        $review->comment = $data["comment"];
+
+        $review->save();
+
+        return redirect()->back()->with('message', 'Đánh giá thành công!');
     }
 
     /**

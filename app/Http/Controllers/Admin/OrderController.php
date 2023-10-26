@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Illuminate\View\View;
 
 class OrderController extends Controller
 {
@@ -13,9 +14,11 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() : View
     {
-        //
+        $orders = Order::get();
+
+        return view('admin.orders.index')->with(compact('orders'));
     }
 
     /**

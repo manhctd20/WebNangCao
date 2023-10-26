@@ -9,6 +9,8 @@ use App\Mail\StoreContactMail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreEmailRequest;
 use App\Models\Category;
+use App\Models\Review;
+use App\Models\User;
 
 class PageController extends Controller
 {
@@ -22,7 +24,15 @@ class PageController extends Controller
 
     public function detail(TravelPackage $travelPackage): View
     {
-        return view('detail', compact('travelPackage'));
+        $reviews = Review::where('travel_package_id', $travelPackage->id)->get();
+        $users = [];
+
+        foreach ($reviews as $review) {
+            $user = User::find($review->user_id);
+            $users[] = $user;
+        }
+
+        return view('detail', compact('travelPackage', 'reviews', 'users'));
     }
 
     public function package()
@@ -52,9 +62,10 @@ class PageController extends Controller
     }
 
     public function detailPost(Post $post)
-    {
-        return view('posts-detail', compact('post'));
-    }
+{
+    return view('posts-detail', compact('post'));
+}
+
 
     public function contact()
     {

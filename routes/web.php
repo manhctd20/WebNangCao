@@ -30,14 +30,16 @@ Route::get('detail/{travelPackage:slug}', [App\Http\Controllers\PageController::
 Route::get('kontak-kami', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');
 Route::post('kontak-kami', [App\Http\Controllers\PageController::class, 'getEmail'])->name('contact.email');
 Route::post('change-password', [App\Http\Controllers\ChangePasswordController::class, 'changePassword'])->name('change-password');
-
+Route::resource('review', \App\Http\Controllers\Admin\ReviewController::class);
+Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
 Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
         Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
         Route::resource('orders', \App\Http\Controllers\Admin\OrderController::class);
-        Route::resource('user', \App\Http\Controllers\Admin\UserController::class);
+        Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+        Route::resource('reviews', \App\Http\Controllers\Admin\ReviewController::class);
         Route::resource('cars', \App\Http\Controllers\Admin\CarController::class);
         Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
         Route::resource('travel-packages', \App\Http\Controllers\Admin\TravelPackageController::class);

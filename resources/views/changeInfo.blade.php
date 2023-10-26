@@ -20,24 +20,24 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                    <form action="{{ route('admin.user.update', [auth()->id()] ) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.users.update', [auth()->id()] ) }}" method="POST" enctype="multipart/form-data">
                         @method("PUT")
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" name="name" class="form-control"value="{{ $user->name }}" id="name">
+                            <input type="text" name="name" class="form-control"value="{{ $users->name }}" id="name">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control"value="{{ $user->email }}" id="exampleInputEmail1">
+                            <input type="email" name="email" class="form-control"value="{{ $users->email }}" id="exampleInputEmail1">
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone</label>
-                            <input type="text" name="phone" class="form-control"value="{{ $user->phone }}" id="phone">
+                            <input type="text" name="phone" class="form-control"value="{{ $users->phone }}" id="phone">
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Địa chỉ</label>
-                            <input type="text" name="address" class="form-control"value="{{ $user->address }}" id="address">
+                            <input type="text" name="address" class="form-control"value="{{ $users->address }}" id="address">
                         </div>
                         <button type="submit" class="btn btn-contact">Thay đổi</button>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Thay đổi mật khẩu</button>
