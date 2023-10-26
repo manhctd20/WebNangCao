@@ -80,7 +80,7 @@ class PageController extends Controller
             'message' => $request->message
         ];
 
-        Mail::to('azizabdulaziz70932@gmail.com')->send(new StoreContactMail($detail));
-        return back()->with('message', 'Terimakasih atas feedbacknya ! kami akan membacanya sesegera mungkin');
+        Mail::to('cmanh0603@gmail.com')->send(new StoreContactMail($detail));
+        return back()->with('message', 'Gửi thành công!!');
     }
 }

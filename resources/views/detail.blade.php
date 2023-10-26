@@ -5,12 +5,12 @@
 
 <style>
     .review {
-        border: 1px solid #ccc;
+        /* border: 1px solid #ccc; */
         padding: 10px;
         margin-bottom: 20px;
         border-radius: 5px;
         background-color: #fff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
     }
 
     .review h5 {
@@ -38,10 +38,11 @@
 
     .review-form {
         background-color: #f9f9f9;
-        border: 1px solid #ccc;
+        border: 1px solid #e7e3e3;
         border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
         padding: 20px;
+        margin-bottom: 20px;
     }
 
     .review-form h3 {
@@ -240,83 +241,78 @@
                         {!! $travelPackage->description !!}
                     </div>
                 </div>
+                <div class="col-12 col-md-12 col-lg-7 mb-5">
+                    <div class="card bordered card-form" style="padding: 30px 40px">
+                        <h4 class="text-center">Booking</h4>
+                        <div class="alert alert-secondary"
+                            style="background-color: #f5f5f5; border: 1px solid #f5f5f5" role="alert">
+                            Thời gian: {{ $travelPackage->duration }} ngày
+                        </div>
+                        <div class="alert alert-secondary"
+                            style="background-color: #f5f5f5; border: 1px solid #f5f5f5" role="alert">
+                            Giá tiền:
+                            <span
+                                class="text-gray-500 font-weight-light">{{ number_format($travelPackage->price) }}
+                                vnđ</span>
+                        </div>
+                        <a onClick="return confirm('Bạn chắc chắn muốn đặt tour?')"
+                            href="{{ route('order', ['tour_id' => $travelPackage->id]) }}"
+                            class="btn btn-book btn-block mt-3">Tiếp tục
+                        </a>
+                    </div>
+                </div>
                 <div class="row" style="margin-top: 120px">
                     <div class="col-12 col-md-12 col-lg-12">
-                        <div class="row">
-                            <div class="col-12 col-md-12 col-lg-7 mb-5">
-                                <div class="card bordered card-form" style="padding: 30px 40px">
-                                    <h4 class="text-center">Booking</h4>
-                                    <div class="alert alert-secondary"
-                                        style="background-color: #f5f5f5; border: 1px solid #f5f5f5" role="alert">
-                                        Thời gian: {{ $travelPackage->duration }} ngày
-                                    </div>
-                                    <div class="alert alert-secondary"
-                                        style="background-color: #f5f5f5; border: 1px solid #f5f5f5" role="alert">
-                                        Giá tiền:
-                                        <span
-                                            class="text-gray-500 font-weight-light">{{ number_format($travelPackage->price) }}
-                                            vnđ</span>
-                                    </div>
-                                    <a onClick="return confirm('Bạn chắc chắn muốn đặt tour?')"
-                                        href="{{ route('order', ['tour_id' => $travelPackage->id]) }}"
-                                        class="btn btn-book btn-block mt-3">Tiếp tục
-                                    </a>
+                        <!-- Phần Đánh giá -->
+                        <div class="review-form">
+                            <h3 class="fw-bold">Post a Review</h3>
+                            <form action="{{ route('review.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                                <input type="hidden" name="travel_package_id" value="{{ $travelPackage->id }}">
+                                <label for="rating">Rating:</label>
+                                <div class="rating">
+                                    <input class="star" type="checkbox" id="star1" name="rating"
+                                        value="1">
+                                    <label for="star1"></label>
+                                    <input class="star" type="checkbox" id="star2" name="rating"
+                                        value="2">
+                                    <label for="star2"></label>
+                                    <input class="star" type="checkbox" id="star3" name="rating"
+                                        value="3">
+                                    <label for="star3"></label>
+                                    <input class="star" type="checkbox" id="star4" name="rating"
+                                        value="4">
+                                    <label for="star4"></label>
+                                    <input class="star" type="checkbox" id="star5" name="rating"
+                                        value="5">
+                                    <label for="star5"></label>
                                 </div>
-                            </div>
+                                <div class="mb-3">
+                                    <label for="comment" class="fw-bold">Comment:</label>
+                                    <textarea class="form-control" name="comment" rows="4"></textarea>
+                                </div>
+                                <button type="submit" id="submitReviewButton" class="btn btn-primary">
+                                    Submit Review</button>
+                            </form>
+                        </div>
 
-                            <div class="col-12 col-md-12 col-lg-5">
-                                <!-- Phần Đánh giá -->
-                                <div class="review-form">
-                                    <h3 class="fw-bold">Post a Review</h3>
-                                    <form action="{{ route('review.store') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="user_id" value="{{ auth()->id() }}">
-                                        <input type="hidden" name="travel_package_id" value="{{ $travelPackage->id }}">
-                                        <label for="rating">Rating:</label>
-                                        <div class="rating">
-                                            <input class="star" type="checkbox" id="star1" name="rating"
-                                                value="1">
-                                            <label for="star1"></label>
-                                            <input class="star" type="checkbox" id="star2" name="rating"
-                                                value="2">
-                                            <label for="star2"></label>
-                                            <input class="star" type="checkbox" id="star3" name="rating"
-                                                value="3">
-                                            <label for="star3"></label>
-                                            <input class="star" type="checkbox" id="star4" name="rating"
-                                                value="4">
-                                            <label for="star4"></label>
-                                            <input class="star" type="checkbox" id="star5" name="rating"
-                                                value="5">
-                                            <label for="star5"></label>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="comment" class="fw-bold">Comment:</label>
-                                            <textarea class="form-control" name="comment" rows="4"></textarea>
-                                        </div>
-                                        <button type="submit" id="submitReviewButton" class="btn btn-primary">
-                                            Submit Review</button>
-                                    </form>
+                        <!-- Phần review-list -->
+                        <div class="review-list">
+                            @foreach ($reviews as $key => $review)
+                                <div class="review">
+                                    <p class="user-info">Người dùng: {{ $users[$key]->name }}</p>
+                                    <div class="rating">
+                                        Rating: {{ $review->rating }}
+                                        <img width="20"
+                                            src="{{ asset('frontend/assets/images/stars/star-fill.png') }}"
+                                            alt="">
+                                    </div>
+                                    <p class="comment">{{ $review->comment }}</p>
+                                    <p class="created_at">{{ $review->created_at }}</p>
                                 </div>
-
-                                <!-- Phần review-list -->
-                                <div class="review-list">
-                                    @foreach ($reviews as $key => $review)
-                                        <div class="review">
-                                            <p class="user-info">Người dùng: {{ $users[$key]->name }}</p>
-                                            <div class="rating">
-                                                Rating: {{ $review->rating }}
-                                                <img width="20"
-                                                    src="{{ asset('frontend/assets/images/stars/star-fill.png') }}"
-                                                    alt="">
-                                            </div>
-                                            <p class="comment">{{ $review->comment }}</p>
-                                            <p class="created_at">{{ $review->created_at }}</p>
-                                        </div>
-                                    @endforeach
-                                    <button id="showMoreButton" class="btn btn-primary mt-3">Xem thêm</button>
-                                </div>
-                            </div>
+                            @endforeach
+                            <button id="showMoreButton" class="btn btn-primary mt-3">Xem thêm</button>
                         </div>
                     </div>
                 </div>
