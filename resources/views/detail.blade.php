@@ -123,22 +123,38 @@
     $(document).ready(function() {
         var expanded = false;
 
-        $('.review:gt(2)').hide();
+        $('.review').each(function(index) {
+            if (index > 2) {
+                $(this).hide();
+            }
+        });
+
+        if ($('.review').length <= 3) {
+            $('#showMoreButton').hide();
+        }
 
         // Xử lý khi nhấn vào nút 'Xem thêm'
         $('#showMoreButton').on('click', function() {
+            $('.review').each(function(index) {
+                if (index > 2) {
+                    if (expanded) {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+                }
+            });
+
             if (expanded) {
-                // Đã mở rộng, thực hiện đóng
-                $('.review:gt(2)').hide();
                 $(this).text('Xem thêm');
             } else {
-                // Chưa mở rộng, thực hiện mở rộng
-                $('.review').show();
                 $(this).text('Rút gọn');
             }
             expanded = !expanded;
         });
     });
+
+
     $(document).ready(function() {
         $('#submitReviewButton').click(function(e) {
                 e.preventDefault(); // Ngăn chặn form được gửi đi
@@ -235,75 +251,74 @@
             </div>
 
             <div class="row" style="margin-top: 120px">
-                <div class="col-12 col-md-12 col-lg-5">
-                    <div class="card border-0 p-2">
-                        <h3 class="fw-bolder title mb-4">Mô tả</h3>
+                <div class="col-12 col-md-12 col-lg-6">
+                    <div class="card border-0 " style="padding: 30px 40px">
+                        <h4 class="fw-bolder title text-center">Mô tả</h4>
                         {!! $travelPackage->description !!}
                     </div>
                 </div>
-                <div class="col-12 col-md-12 col-lg-7 mb-5">
-                    <div class="card bordered card-form" style="padding: 30px 40px">
-                        <h4 class="text-center">Booking</h4>
-                        <div class="alert alert-secondary"
-                            style="background-color: #f5f5f5; border: 1px solid #f5f5f5" role="alert">
-                            Thời gian: {{ $travelPackage->duration }} ngày
+                <div class="col-12 col-md-12 col-lg-6">
+                    <div class="card border-0 card-form" style="padding: 30px 40px">
+                        <h4 class="fw-bolder title text-center">Đặt vé</h4>
+                        <div class="alert alert-secondary" style="background-color: #f5f5f5; border: 1px solid #f5f5f5"
+                            role="alert">
+                            Thời gian: {{ $travelPackage->duration }}
                         </div>
-                        <div class="alert alert-secondary"
-                            style="background-color: #f5f5f5; border: 1px solid #f5f5f5" role="alert">
+                        <div class="alert alert-secondary" style="background-color: #f5f5f5; border: 1px solid #f5f5f5"
+                            role="alert">
                             Giá tiền:
-                            <span
-                                class="text-gray-500 font-weight-light">{{ number_format($travelPackage->price) }}
+                            <span class="text-gray-500 font-weight-light">{{ number_format($travelPackage->price) }}
                                 vnđ</span>
                         </div>
-                        <a onClick="return confirm('Bạn chắc chắn muốn đặt tour?')"
-                            href="{{ route('order', ['tour_id' => $travelPackage->id]) }}"
-                            class="btn btn-book btn-block mt-3">Tiếp tục
-                        </a>
+                        @if (Auth::check())
+                            <a onClick="return confirm('Bạn chắc chắn muốn đặt tour?')"
+                                href="{{ route('order', ['tour_id' => $travelPackage->id]) }}"
+                                class="btn btn-book btn-block mt-3" id="continue">Tiếp tục
+                            </a>
+                        @else
+                            <p>Bạn cần đăng nhập để tiếp tục đặt tour.</p>
+                            <a href="{{ route('login') }}" class="btn btn-primary">Đăng nhập</a>
+                        @endif
+
                     </div>
                 </div>
                 <div class="row" style="margin-top: 120px">
                     <div class="col-12 col-md-12 col-lg-12">
-                        <!-- Phần Đánh giá -->
                         <div class="review-form">
-                            <h3 class="fw-bold">Post a Review</h3>
+                            <h3 class="fw-bold">Đánh Giá</h3>
                             <form action="{{ route('review.store') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                                 <input type="hidden" name="travel_package_id" value="{{ $travelPackage->id }}">
-                                <label for="rating">Rating:</label>
+                                <label for="rating"></label>
                                 <div class="rating">
-                                    <input class="star" type="checkbox" id="star1" name="rating"
-                                        value="1">
+                                    <input class="star" type="checkbox" id="star1" name="rating" value="1">
                                     <label for="star1"></label>
-                                    <input class="star" type="checkbox" id="star2" name="rating"
-                                        value="2">
+                                    <input class="star" type="checkbox" id="star2" name="rating" value="2">
                                     <label for="star2"></label>
-                                    <input class="star" type="checkbox" id="star3" name="rating"
-                                        value="3">
+                                    <input class="star" type="checkbox" id="star3" name="rating" value="3">
                                     <label for="star3"></label>
-                                    <input class="star" type="checkbox" id="star4" name="rating"
-                                        value="4">
+                                    <input class="star" type="checkbox" id="star4" name="rating" value="4">
                                     <label for="star4"></label>
-                                    <input class="star" type="checkbox" id="star5" name="rating"
-                                        value="5">
+                                    <input class="star" type="checkbox" id="star5" name="rating" value="5">
                                     <label for="star5"></label>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="comment" class="fw-bold">Comment:</label>
+                                    <label for="comment" class="fw-bold">Bình luận:</label>
                                     <textarea class="form-control" name="comment" rows="4"></textarea>
                                 </div>
                                 <button type="submit" id="submitReviewButton" class="btn btn-primary">
-                                    Submit Review</button>
+                                    Gửi Đánh giá</button>
                             </form>
                         </div>
 
-                        <!-- Phần review-list -->
                         <div class="review-list">
+
                             @foreach ($reviews as $key => $review)
                                 <div class="review">
                                     <p class="user-info">Người dùng: {{ $users[$key]->name }}</p>
                                     <div class="rating">
-                                        Rating: {{ $review->rating }}
+                                        {{ $review->rating }}
                                         <img width="20"
                                             src="{{ asset('frontend/assets/images/stars/star-fill.png') }}"
                                             alt="">
@@ -312,7 +327,10 @@
                                     <p class="created_at">{{ $review->created_at }}</p>
                                 </div>
                             @endforeach
+
+
                             <button id="showMoreButton" class="btn btn-primary mt-3">Xem thêm</button>
+
                         </div>
                     </div>
                 </div>

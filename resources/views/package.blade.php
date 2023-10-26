@@ -42,7 +42,7 @@
                     </div>
                     <div class="package-price d-flex justify-content-center">
                     <span class="btn btn-light position-absolute package-btn">
-                        {{ $travelPackage->price }} vnđ
+                        {{ number_format($travelPackage->price) }} vnđ
                     </span>
                     </div>
                     <h5 class="btn position-absolute w-100">
