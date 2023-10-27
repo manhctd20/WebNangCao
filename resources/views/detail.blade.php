@@ -118,6 +118,18 @@
     .rating input:checked+label {
         background-image: url('{{ asset('frontend/assets/images/stars/star-fill.png') }}');
     }
+
+    .swiper-3d .swiper-slide-shadow-left{
+        width: initial !important;
+        height: initial !important;
+    }
+    .swiper-3d .swiper-slide-shadow-right{
+        width: initial !important;
+        height: initial !important;
+    }
+    .swiper-wrapper {
+        height: initial !important;
+    }
 </style>
 <script>
     $(document).ready(function() {

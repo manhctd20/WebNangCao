@@ -149,7 +149,7 @@
                             <img style="height: 200px;object-fit: contain;" src="{{ Storage::url($car->image) }}"
                                 alt="">
                             <h4 class="main-color fw-bold mb-4" style="font-size: 1.4rem">{{ $car->name }}</h4>
-                            <span class="fw-bold mb-4">Giá : {{ $car->price }} vnđ</span>
+                            <span class="fw-bold mb-4">Giá : {{ number_format($car->price) }} vnđ</span>
                             <span class="d-flex mb-3"><i class='bx bxs-gas-pump main-color fs-4 me-3 '></i> <strong>Driver +
                                     BBM</strong> </span>
                             <span class="d-flex"><i class='bx bxs-time-five main-color fs-4 me-3'></i>
@@ -186,8 +186,7 @@
                         <a href="{{ route('posts.show', $post) }}">
                             <div class="card-post">
                                 <div class="card-post-img">
-                                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8dHJhdmVsJTIwYmFsaXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
-                                        alt="{{ $post->title }}">
+                                    <img width="450" src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}">
                                 </div>
                                 <div class="card-post-data">
                                     <span>Travel</span> <small>- {{ $post->created_at->diffForHumans() }}</small>

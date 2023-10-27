@@ -10,8 +10,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-12 mb-4">
                 <div class="card post-detail pb-5 text-center">
-                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8dHJhdmVsJTIwYmFsaXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60"
-                        alt="{{ $post->title }}">
+                <img src="{{ Storage::url($post->image) }}"  alt="{{ $post->title }}">
                   <div class="post-detail-data">
                     <div class="card-post-data mt-2">
                       <span>Travel</span> <small> - {{ $post->created_at->diffForHumans() }}</small>

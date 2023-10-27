@@ -18,8 +18,8 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                           Product</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">10k</div>
+                           Tổng số Tours</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$Travel}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-hotel fa-2x text-gray-300"></i>
@@ -36,8 +36,8 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            TRANSACTION</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">5k</div>
+                            Tổng số orders</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$orderscount}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -53,11 +53,11 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pending
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Chờ xác nhận
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">1k</div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$waitingOrders}}</div>
                             </div>
                         </div>
                     </div>
@@ -76,8 +76,8 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                           Success</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">9k</div>
+                            Đã xác nhận</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$acppetOrder}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-check fa-2x text-gray-300"></i>

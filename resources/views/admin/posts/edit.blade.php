@@ -37,7 +37,7 @@
                     @endif
                     <div class="form-group">
                         <label for="image">Image</label> 
-                        <input type="file" class="form-control" valeu="{{ $post->image }}" id="image" name="image" />
+                        <input type="file" class="form-control" value="{{ $post->image }}" id="image" name="image" />
                     </div>
                     <div class="form-group">
                         <label for="content">Content</label>

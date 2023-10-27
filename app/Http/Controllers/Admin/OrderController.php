@@ -24,9 +24,7 @@ class OrderController extends Controller
         $users = [];
         $tourNames = [];
         
-        $orders = Order::where('user_id', $user->id)
-            // ->where('travel_package_id', $travelPackage->id)
-            ->get();
+        $orders = Order::get();
 
         foreach ($orders as $order) {
             $user = User::find($order->user_id);
@@ -36,7 +34,6 @@ class OrderController extends Controller
         }
     
         $orders = Order::get();
-
 
         return view('admin.orders.index')->with(compact('orders','users', 'tourNames'));
     }

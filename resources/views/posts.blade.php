@@ -36,7 +36,7 @@
             <a href="{{ route('posts.show', $post)  }}">
               <div class="card-post">
                 <div class="card-post-img">
-                <img src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}">
+                <img width="450" src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}">
                 </div>
                 <div class="card-post-data">
                   <span>Travel</span> <small>- {{ $post->created_at->diffForHumans() }}</small>
